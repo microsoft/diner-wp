@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ Copyright © 2011-2013 Nokia Corporation. All rights reserved.
+ Nokia and Nokia Connecting People are registered trademarks of Nokia Corporation. 
+ Other product and company names mentioned herein may be trademarks
+ or trade names of their respective owners. 
+ See LICENSE.TXT for license information.
+-->
+<restaurant>
+    <info>
+        <name>diner</name>
+        <logo>content/logo.png</logo>
+        <address>
+            <street>1567 Broadway</street>
+            <city>New York</city>
+            <country>United States</country>
+            <coordinates>
+                <latitude>40.75930175423635</latitude>
+                <longitude>-73.98525953292847</longitude>
+            </coordinates>
+        </address>
+        <map>
+            <minZoomLevel>12</minZoomLevel>
+            <maxZoomLevel>17</maxZoomLevel>
+        </map>
+        <telephone>+2129189999</telephone>
+        <url>http://www.diner.com</url>
+        <description>It takes guts to open a restaurant in Times Square that lacks a theme or strives to be classier than a carnival. Granted, Diner offers an audacious voyeur's paradise in its soaring staircase that rises alongside a suspended abstract sculpture of a fork. Mayson Bacon Jr. has succeeded finding a perfect balance between class and bacon.</description>
+    </info>    
+    <menu>
+        <category id="category1" name="Soups" icon="content/soups_icon.png">
+            <dish name="The King of Prawns" icon="">Deep-fried king prawns and Sweet Chili sauce.</dish>
+            <dish name="Super Hot Jalapeno Pops" icon="">Deep-fried jalapenos filled with cheese. Served with garlic mayonnaise and out SuperHot Chilisauce.</dish>
+            <dish name="Muchos Nachos" icon="">Tortillaa chips, melted cheddar cheese, salsa sauce, jalapeno slices, sour cream &amp; guacamole.</dish>
+            <dish name="Just Fries" icon="">Salted fries with bbq sauce.</dish>
+            <dish name="Blue Cheese 'n Fries" icon="">Seasoned Criss Cuts with blue cheese sauce.</dish>
+            <dish name="Sweet Fries" icon="">Sweet potato fries with our special mustard sauce.</dish>
+        </category>
+        <category id="category2" name="Vegetarian" icon="content/vegetarian_icon.png">
+            <dish name="THE Ceasar Salad" icon="">A mixed green salad with Caesar dressing, Parmesan cheese, croutons and arugula with a choice of chicken breast, marinated shrimps, bacon or chevre.</dish>
+            <dish name="All Vegs" icon="">A mixed green salad with cherry tomato, cucumber, fresh pineapple, orange, marinated red onion, watermelon, arugula &amp;  deep-fried spring rolls. Served with ranch dressing, toasted bread and Sweet Chili sauce.</dish>
+            <dish name="Fruity Fish Salad" icon="">A mixed green salad with salmon fillet, cherry tomato, cucumber, fresh pineapple, orange, marinated red onion, watermelon, lime &amp; arugula.  Oil &amp; herb dressing and toasted bread.</dish>
+        </category>
+        <category id="category3" name="Sea Food" icon="content/sea_food_icon.png">
+            <dish name="Fish of the day" icon="">Whatever fish comes up, served with seasonal vegetables and Tartar sauce.</dish>
+            <dish name="Tons of Tuna" icon="">A huge steak of fresh tuna, baked sweet potato and lime mayo.</dish>
+        </category>
+        <category id="category4" name="Steaks" icon="content/steaks_icon.png">
+            <dish name="Giant BBQ Steak" icon="">A 250g sirloin steak, fries, seasonal veggies and BBQ mayo.</dish>
+            <dish name="Surf 'n Turf" icon="">A 180g sirloin steak, deep-fried king prawns, bell pepper, asparagus, red onion, whiskey- and Bearnaise sauce, Criss Cuts and garnished with arugula.</dish>
+            <dish name="Silence of the Lambs" icon="">Lamb Loin Chops with minty mushed peas, country fries and creamy mustard sauce.</dish>
+            <dish name="Latino Chick" icon="">Chicken breast with Latino sauce and salad of cherry tomatos, cucumber, marinated red onion &amp; arugula. Fresh pineapple, garlic mayonnaise and Criss Cuts.</dish>
+        </category>
+        <category id="category5" name="Desserts" icon="content/desserts_icon.png">
+            <dish name="Master Muffin" icon="">Chocolate muffin with white-chock chips, served with vanilla whipped cream.</dish>
+            <dish name="The Big Apple" icon="">Apple pie with pecan nuts and raisins, served with vanilla ice cream and chocolate sauce.</dish>
+            <dish name="Shake it, shake it" icon="">A giant milk shake with a choice of banana-chocolate, chocolate, strawberry-vanilla or mint-chocolate. Made with real fruits and choc.</dish>
+            <dish name="Super Cheesecake" icon="">A home made cheesecake served with heaps of whipped cream and Goji-berry &amp; strawberry sauces.</dish>
+        </category>
+        <category id="category5" name="Drinks" icon="content/drinks_icon.png">
+            <dish name="Master Muffin" icon="">Chocolate muffin with white-chock chips, served with vanilla whipped cream.</dish>
+            <dish name="The Big Apple" icon="">Apple pie with pecan nuts and raisins, served with vanilla ice cream and chocolate sauce.</dish>
+            <dish name="Shake it, shake it" icon="">A giant milk shake with a choice of banana-chocolate, chocolate, strawberry-vanilla or mint-chocolate. Made with real fruits and choc.</dish>
+            <dish name="Super Cheesecake" icon="">A home made cheesecake served with heaps of whipped cream and Goji-berry &amp; strawberry sauces.</dish>
+        </category>
+    </menu>
+</restaurant>

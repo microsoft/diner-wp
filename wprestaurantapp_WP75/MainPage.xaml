@@ -1,0 +1,209 @@
+﻿<!--
+ Copyright © 2011-2013 Nokia Corporation. All rights reserved.
+ Nokia and Nokia Connecting People are registered trademarks of Nokia Corporation. 
+ Other product and company names mentioned herein may be trademarks
+ or trade names of their respective owners. 
+ See LICENSE.TXT for license information.
+-->
+<phone:PhoneApplicationPage
+    x:Class="wprestaurantapp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:my="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <phone:PhoneApplicationPage.Resources>
+
+        <Style x:Key="GridItemButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+            <Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}"/>
+            <Setter Property="Padding" Value="10,3,10,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Pressed"/>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid Height="140" Margin="12,12,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="140">
+                                <Image Source="{Binding IconURI}"/>
+                                <TextBlock Margin="8,0,8,8" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="27" Text="{Binding Name}" d:LayoutOverrides="VerticalAlignment" Foreground="White" />
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="GridItemTemplate">
+            <Button Style="{StaticResource GridItemButtonStyle}"
+                    Click="MenuItem_Click"/>
+        </DataTemplate>
+
+        <ItemsPanelTemplate x:Key="GridPanelTemplate">
+            <!-- WrapPanel is part of Silverlight Toolkit which does not ship as part of this
+                 example. Please see release notes for instructions how to install and use Silverlight Toolkit. -->
+            <toolkit:WrapPanel/>
+        </ItemsPanelTemplate>
+        
+        <Style x:Key="AddReservation" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/content/ReservationsAddIcon.png" Margin="0,0,8,0" />
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate x:Key="ListBoxItemTemplate">
+            <StackPanel Margin="0,0,0,8" Tap="Reservation_Click">
+                <TextBlock Text="{Binding Time, Converter={StaticResource DateConverter}}" Style="{StaticResource PhoneTextLargeStyle}"
+                           Foreground="White"/>
+                <TextBlock Text="{Binding Persons, Converter={StaticResource PersonConverter}}" Style="{StaticResource PhoneTextSubtleStyle}"
+                           Foreground="White"/>
+                <!-- ContextMenuService is part of Silverlight Toolkit which does not ship as part of this
+                     example. Please see release notes for instructions how to install and use Silverlight Toolkit. -->
+                <toolkit:ContextMenuService.ContextMenu >
+                    <toolkit:ContextMenu IsZoomEnabled="True">
+                        <toolkit:MenuItem Header="Cancel" Click="Reservation_Context"/>
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
+            </StackPanel>
+        </DataTemplate>
+
+    </phone:PhoneApplicationPage.Resources>
+    
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <controls:Panorama x:Name="MainPanorama" Title="{Binding Path=Restaurant.Name}" ItemsSource="{Binding}"
+                           Foreground="White">
+            <controls:Panorama.Background>
+                <ImageBrush ImageSource="/content/PanoramaBackground.png"/>
+            </controls:Panorama.Background>
+
+            <controls:PanoramaItem Header="{Binding Path=LocalizedResources.TitleInformation, Source={StaticResource LocalizedStrings}}" >
+                <ScrollViewer>
+                    <StackPanel Margin="0,12">
+                        <StackPanel Orientation="Horizontal" Margin="12,0,0,0">
+                            <Image Source="{Binding Path=Restaurant.LogoURI}" />
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="{Binding Path=Restaurant.StreetAddress}"
+                                           Foreground="White"/>
+                                <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Text="{Binding Path=Restaurant.City}"
+                                           Foreground="White"/>
+                                <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Text="{Binding Path=Restaurant.Country}"
+                                           Foreground="White"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="{Binding Path=LocalizedResources.HeaderDescription, Source={StaticResource LocalizedStrings}}"
+                                   Foreground="White"/>
+                        <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Text="{Binding Path=Restaurant.Description}" TextWrapping="Wrap"
+                                   Foreground="White"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="{Binding Path=LocalizedResources.TitleAlacarte, Source={StaticResource LocalizedStrings}}">
+                <!-- TiltEffect is part of Silverlight Toolkit which does not ship as part of this
+                     example. Please see release notes for instructions how to install and use Silverlight Toolkit. -->
+                <ListBox Name="MenuListBox"
+                            toolkit:TiltEffect.IsTiltEnabled="True"
+                            ItemTemplate="{StaticResource GridItemTemplate}" 
+                            ItemsSource="{Binding Restaurant.Categories}" 
+                            ItemsPanel="{StaticResource GridPanelTemplate}"
+                            HorizontalAlignment="Center">
+                </ListBox>
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="{Binding Path=LocalizedResources.TitleLocation, Source={StaticResource LocalizedStrings}}">
+                <ScrollViewer>
+                    <StackPanel>
+                        <!-- TiltEffect is part of Silverlight Toolkit which does not ship as part of this
+                     example. Please see release notes for instructions how to install and use Silverlight Toolkit. -->
+                        <Button Click="Map_Click"
+                                toolkit:TiltEffect.IsTiltEnabled="True"
+                                Width="180" Margin="16,16,16,32">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel>
+                                        <Image Source="/content/MapIcon.png"></Image>
+                                        <TextBlock Style="{StaticResource PhoneTextSubtleStyle}"
+                                                   HorizontalAlignment="Center"
+                                                   Text="{Binding Path=LocalizedResources.LocationMap, Source={StaticResource LocalizedStrings}}"
+                                                   Foreground="White"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="{Binding Path=Restaurant.StreetAddress}"
+                                   Foreground="White"/>
+                        <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Text="{Binding Path=Restaurant.City}"
+                                   Foreground="White"/>
+                        <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Text="{Binding Path=Restaurant.Country}"
+                                   Foreground="White"/>
+                        <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="{Binding Path=LocalizedResources.LocationPhone, Source={StaticResource LocalizedStrings}}"
+                                   Foreground="White"/>
+                        <HyperlinkButton Margin="12,0"
+                                         NavigateUri=""
+                                         Content="{Binding Path=Restaurant.Telephone}"
+                                         HorizontalContentAlignment="Left"
+                                         Click="Phonenumber_Click"
+                                         Foreground="White"/>
+                        <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="{Binding Path=LocalizedResources.LocationWeb, Source={StaticResource LocalizedStrings}}"
+                                   Foreground="White"/>
+                        <HyperlinkButton Margin="12,0" NavigateUri="{Binding Path=Restaurant.URL}" Content="{Binding Path=Restaurant.URL}" TargetName="_blank" HorizontalContentAlignment="Left"
+                                         Foreground="White"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="{Binding Path=LocalizedResources.TitleReservations, Source={StaticResource LocalizedStrings}}">
+                <StackPanel x:Name="ReservationsPanel">
+                    <!-- TiltEffect is part of Silverlight Toolkit which does not ship as part of this
+                         example. Please see release notes for instructions how to install and use Silverlight Toolkit. -->
+                    <Button Content="{Binding Path=LocalizedResources.ReservationsNew, Source={StaticResource LocalizedStrings}}"
+                            Style="{StaticResource AddReservation}"
+                            Click="AddReservation_Click"
+                            toolkit:TiltEffect.IsTiltEnabled="True"
+                            Margin="16"
+                            Foreground="White"/>
+                    <!-- TiltEffect is part of Silverlight Toolkit which does not ship as part of this
+                         example. Please see release notes for instructions how to install and use Silverlight Toolkit. -->
+                    <ListBox Name="ReservationsListBox"
+                             ItemsSource="{Binding Restaurant.Reservations}"
+                             ItemTemplate="{StaticResource ListBoxItemTemplate}"
+                             toolkit:TiltEffect.IsTiltEnabled="True"
+                             Height="400">
+                    </ListBox>
+                </StackPanel>
+                
+            </controls:PanoramaItem>
+        </controls:Panorama>
+    </Grid>
+
+</phone:PhoneApplicationPage>
