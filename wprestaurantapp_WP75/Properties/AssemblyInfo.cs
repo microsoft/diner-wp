@@ -11,7 +11,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Nokia")]
 [assembly: AssemblyProduct("wprestaurantapp")]
-[assembly: AssemblyCopyright("Copyright © 2011-2013 Nokia Corporation.")]
+[assembly: AssemblyCopyright("Copyright (c) 2011-2013 Nokia Corporation.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
