@@ -32,7 +32,7 @@ Make sure you have the following installed:
 
  * Windows 8
  * Windows Phone SDK 8.0
- * NuGet Package Manager (https://nuget.org/), Visual Studio extension to install and update third-party libraries and tools in Visual Studio
+ * Latest NuGet Package Manager (>2.7.1) from https://nuget.org/ to enable NuGet Package Restore
 
 To build and run the sample:
 
@@ -127,7 +127,7 @@ License
 Version history
 ---------------
 
- * 1.5.0 Support for 720p resolution.
+ * 1.5.0 Support for 720p resolution and NuGet package restore.
  * 1.4.0 Using Pushpin from WPToolkit for WP 8.
  * 1.3.0 Support for Windows Phone 8.
  * 1.2.0 Bug fixes and changes based on reviews; published on the Nokia Developer website.
